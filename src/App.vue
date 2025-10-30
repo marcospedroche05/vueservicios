@@ -1,14 +1,14 @@
 <template>
-  <CochesComponentVue/>
+  <CustomersComponentVue/>
 </template>
 
 <script>
-import CochesComponentVue from './components/CochesComponent.vue'
+import CustomersComponentVue from './components/CustomersComponent.vue'
 
 export default {
   name: 'App',
   components: {
-    CochesComponentVue
+    CustomersComponentVue
   }
 }
 </script>
