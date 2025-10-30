@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 style="text-decoration: underline">API Coches</h1>
+    <h1 style="text-decoration: underline">API VUEn coche</h1>
     <hr/>
     <div v-for="coche in coches" :key="coche">
         <h3 style="color:blue">
@@ -14,9 +14,10 @@
 
 <script>
 import axios from "axios";
+import Global from "../Global"
 //SI NECESITAMOS VARIABLES PARA TODO EL COMPONENTE Y SUS METODOS 
 //SE DECLARAN AQUI (mounted, methods, create)
-let urlApi = "https://apicochespaco.azurewebsites.net/";
+let urlApi = Global.urlCoches;
 export default {
     name: "CochesComponent",
     data(){
