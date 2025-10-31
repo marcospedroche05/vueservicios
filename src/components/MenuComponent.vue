@@ -2,6 +2,7 @@
   <div>
     <ul class="d-flex justify-content-around p-3">
         <li><router-link to="/">Empleados</router-link></li>
+        <li><router-link to="/coches">Coches</router-link></li>
         <li><router-link to="/customers">Customers</router-link></li>
     </ul>
   </div>
