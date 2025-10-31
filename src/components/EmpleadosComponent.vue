@@ -1,5 +1,6 @@
 <template>
   <div class="p-5 border border-primary z-1 m-5 rounded rounded-5">
+    <h2>{{ mensaje }}</h2>
     <h1 class="text-primary">Empleados</h1>
     <select v-model="select" class="form-control">
       <option
@@ -25,9 +26,8 @@
 </template>
 
 <script>
-import Global from "@/Global";
-import axios from "axios";
-var urlApi = Global.urlEmpleados;
+import SeviceEmpleados from '@/services/ServiceEmpleados';
+const service = new SeviceEmpleados();
 export default {
   name: "EmpleadosComponent",
   data() {
@@ -39,20 +39,17 @@ export default {
     };
   },
   mounted() {
-    var request = "api/Empleados";
-    var url = urlApi + request;
-    axios.get(url).then((response) => {
-      this.empleados = response.data;
-    });
+    service.getAllEmpleados().then(result => {
+      this.empleados = result;
+    })
   },
   methods: {
     muestraSeleccionado() {
       this.idEmpleado = this.select;
       if (this.idEmpleado != 0) {
-        var request = "api/Empleados/" + this.idEmpleado;
-        axios.get(urlApi + request).then((response) => {
-          this.empleado = response.data;
-        });
+        service.getEmpleado(this.idEmpleado).then(result => {
+          this.empleado = result
+        })
       }
     },
   },

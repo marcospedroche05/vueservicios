@@ -13,25 +13,22 @@
 </template>
 
 <script>
-import axios from "axios";
-import Global from "../Global"
+
+import ServiceCoches from "@/services/ServiceCoches";
 //SI NECESITAMOS VARIABLES PARA TODO EL COMPONENTE Y SUS METODOS 
 //SE DECLARAN AQUI (mounted, methods, create)
-let urlApi = Global.urlCoches;
+const service = new ServiceCoches();
 export default {
     name: "CochesComponent",
     data(){
         return {
             coches: []
         }
-    }, mounted(){
-        var request = "webresources/coches";
-        //LAS VARIABLES FUERA DEL EXPORT NO UTILIZAN THIS
-        let url = urlApi + request;
-        axios.get(url).then(response => {
-            console.log(response);
-            this.coches = response.data
-        })
+    }, mounted() {
+        //UNA PROMESA ES UN OBJETO, NO UN METODO
+        service.getAllCoches().then(result => {
+            this.coches = result 
+        }); 
     }
 }
 </script>

@@ -11,7 +11,7 @@
           <router-link class="nav-link" to="/">Home</router-link>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+          <router-link class="nav-link" to="/coches">Coches</router-link>
         </li>  
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Oficios</a>
@@ -27,9 +27,8 @@
 </template>
 
 <script>
-import Global from '@/Global';
-import axios from 'axios';
-var urlApi = Global.urlEmpleados;
+import SeviceEmpleados from '@/services/ServiceEmpleados';
+const service = new SeviceEmpleados();
 export default {
     name: "MenuComponent",
     data(){
@@ -37,10 +36,8 @@ export default {
         oficios: []
       }
     }, mounted(){
-      var request= "api/Empleados/oficios";
-      var url = urlApi + request;
-      axios.get(url).then(response => {
-        this.oficios = response.data
+      service.getOficios().then(result => {
+        this.oficios = result;
       })
     }
 }
